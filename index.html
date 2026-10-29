@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Solar And Solar Solution</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0B0F19',
+                            950: '#05070B',
+                            800: '#131C2E',
+                            700: '#1E293B',
+                        },
+                        gold: {
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            metallic: '#FBBF24',
+                        },
+                        solar: {
+                            500: '#10B981',
+                            600: '#059669',
+                        },
+                        tech: {
+                            400: '#38BDF8',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B0F19; color: #F8FAFC; }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(11, 15, 25, 0.95) 0%, rgba(19, 28, 46, 0.95) 100%), radial-gradient(circle at top right, rgba(234, 179, 8, 0.15), transparent 50%), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.15), transparent 50%);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        .glass-card-tech {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100 antialiased selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- Notification Modal Box -->
+    <div id="toast-modal" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 ease-out pointer-events-none">
+        <div class="bg-navy-800 border border-gold-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3">
+            <div id="toast-icon" class="text-gold-400 text-xl"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+                <h4 id="toast-title" class="font-bold text-sm">Success!</h4>
+                <p id="toast-msg" class="text-xs text-slate-300">Your request has been received.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="bg-navy-950 border-b border-navy-700 text-xs py-2.5 px-4 sm:px-8 text-slate-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fa-solid fa-phone text-gold-400 mr-2"></i>+92 322 5253517</span>
+                <span><i class="fa-solid fa-envelope text-tech-400 mr-2"></i>mustafaprofessional0@gamil.com</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gold-400 font-semibold"><i class="fa-solid fa-bolt mr-1"></i> Premier Solar & Software Engineering</span>
+                <div class="flex space-x-3 text-slate-300">
+                    <a href="#" class="hover:text-gold-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gold-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/923225253517" target="_blank" class="hover:text-gold-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-navy-900/90 backdrop-blur-md border-b border-navy-700 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gold-500 via-amber-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-gold-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-sun text-navy-950 text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-base sm:text-lg font-black tracking-tight gold-gradient-text">MUSTAFA</span>
+                    <span class="block text-[10px] tracking-widest text-slate-400 uppercase font-bold">Solar And Solar Solution</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#home" class="hover:text-gold-400 transition">Home</a>
+                <a href="#about" class="hover:text-gold-400 transition">About Us</a>
+                <a href="#solar" class="hover:text-gold-400 transition">Solar Systems</a>
+                <a href="#software" class="hover:text-gold-400 transition">Software & Tech</a>
+                <a href="#calculator" class="hover:text-gold-400 transition">Estimator</a>
+                <a href="#projects" class="hover:text-gold-400 transition">Portfolio</a>
+                <a href="#contact" class="hover:text-gold-400 transition">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <a href="https://wa.me/923225253517?text=Hello%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20Solar%20or%20Software%20solutions." target="_blank" class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-navy-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition transform hover:-translate-y-0.5 text-sm flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>WhatsApp Quote</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="lg:hidden text-slate-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-navy-700 px-6 py-6 space-y-4">
+            <a href="#home" class="block text-slate-300 hover:text-gold-400 font-medium">Home</a>
+            <a href="#about" class="block text-slate-300 hover:text-gold-400 font-medium">About Us</a>
+            <a href="#solar" class="block text-slate-300 hover:text-gold-400 font-medium">Solar Systems</a>
+            <a href="#software" class="block text-slate-300 hover:text-gold-400 font-medium">Software & Tech</a>
+            <a href="#calculator" class="block text-slate-300 hover:text-gold-400 font-medium">Estimator</a>
+            <a href="#projects" class="block text-slate-300 hover:text-gold-400 font-medium">Portfolio</a>
+            <a href="#contact" class="block text-slate-300 hover:text-gold-400 font-medium">Contact Us</a>
+            <div class="pt-2">
+                <a href="https://wa.me/923225253517" target="_blank" class="w-full block text-center bg-gold-500 text-navy-950 font-bold py-3 rounded-xl">WhatsApp Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] hero-gradient flex items-center justify-center text-white px-4 sm:px-8 py-20 overflow-hidden">
+        <!-- Floating decorative glows -->
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-tech-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-navy-800/90 border border-gold-500/30 px-4 py-2 rounded-full text-xs font-semibold text-gold-400 backdrop-blur-md">
+                    <i class="fa-solid fa-award"></i>
+                    <span>Pakistan's Elite Dual-Engineers in Clean Energy & Software</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                    Powering Homes with <span class="gold-gradient-text">Solar Energy</span> & Businesses with <span class="text-tech-400">Smart Software</span>
+                </h1>
+                <p class="text-slate-300 text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    We engineer turnkey commercial and residential solar power solutions with net-metering, alongside high-performance enterprise software, custom web applications, and business automation apps.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#solar" class="w-full sm:w-auto bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-navy-950 font-bold px-8 py-4 rounded-xl shadow-xl shadow-gold-500/20 transition flex items-center justify-center space-x-3">
+                        <i class="fa-solid fa-solar-panel"></i>
+                        <span>Explore Solar Systems</span>
+                    </a>
+                    <a href="#software" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-700 text-white font-bold px-8 py-4 rounded-xl border border-tech-500/40 transition flex items-center justify-center space-x-3">
+                        <i class="fa-solid fa-code text-tech-400"></i>
+                        <span>Explore Software Tech</span>
+                    </a>
+                </div>
+                
+                <!-- Quick Metrics -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-navy-700 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <h4 class="text-3xl font-extrabold text-gold-400">500+</h4>
+                        <p class="text-xs text-slate-400 mt-1">Solar Installations</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-extrabold text-tech-400">150+</h4>
+                        <p class="text-xs text-slate-400 mt-1">Software Solutions</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-extrabold text-emerald-400">100%</h4>
+                        <p class="text-xs text-slate-400 mt-1">Client Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Graphic Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-gold-500/20 to-tech-500/20 rounded-3xl blur-2xl"></div>
+                    <div class="relative glass-card rounded-3xl p-6 sm:p-8 shadow-2xl">
+                        <div class="flex items-center justify-between pb-6 border-b border-navy-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-bolt text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Mustafa Solutions</h4>
+                                    <span class="text-xs text-gold-400 font-semibold">Solar + IT Synergy</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full font-semibold">Active 24/7</span>
+                        </div>
+                        
+                        <div class="space-y-4 pt-6">
+                            <div class="bg-navy-900/80 p-4 rounded-xl border border-gold-500/20 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-sun text-gold-400 text-xl"></i>
+                                    <div>
+                                        <p class="text-xs text-slate-400">Solar Power Plant</p>
+                                        <p class="text-sm font-bold text-white">Tier-1 High Efficiency</p>
+                                    </div>
+                                </div>
+                                <span class="text-gold-400 font-bold text-sm">Zero Bills</span>
+                            </div>
+
+                            <div class="bg-navy-900/80 p-4 rounded-xl border border-tech-500/20 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-laptop-code text-tech-400 text-xl"></i>
+                                    <div>
+                                        <p class="text-xs text-slate-400">Enterprise Software</p>
+                                        <p class="text-sm font-bold text-white">Cloud ERP & Apps</p>
+                                    </div>
+                                </div>
+                                <span class="text-tech-400 font-bold text-sm">99.9% Uptime</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-navy-700 text-center">
+                            <a href="tel:03225253517" class="w-full inline-block bg-gradient-to-r from-gold-500 to-amber-600 text-navy-950 font-bold py-3 rounded-xl text-sm shadow-lg hover:opacity-95 transition">
+                                <i class="fa-solid fa-phone mr-2"></i> Call: 03225253517
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-navy-950 border-b border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">About Our Firm</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Excellence in Renewable Energy & Software Engineering</h2>
+                <p class="text-slate-400 text-base">Mustafa Solar And Solar Solution bridges physical power sustainability with digital innovation. We empower residential and commercial clients across Pakistan with robust solar setups and tailor-made software applications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:border-gold-400 transition group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-solar-panel"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Turnkey Solar Engineering</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Complete rooftop and industrial solar installations with full WAPDA/DISCO net-metering approvals and Tier-1 hardware warranty.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card-tech rounded-2xl p-8 hover:border-tech-400 transition group">
+                    <div class="w-14 h-14 rounded-xl bg-tech-500/10 text-tech-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-tech-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Advanced Software Solutions</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Custom web apps, mobile applications, cloud ERPs, and automated business management platforms built for scalability.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:border-emerald-400 transition group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">24/7 Expert Support</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Dedicated engineering and IT support teams ready to assist with system maintenance, performance tuning, and technical guidance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solar Systems Division -->
+    <section id="solar" class="py-20 bg-navy-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div class="space-y-3">
+                    <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider"><i class="fa-solid fa-sun mr-1"></i> Clean Energy Portfolio</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Solar Systems & Net Metering Solutions</h2>
+                </div>
+                <p class="text-slate-400 max-w-md mt-4 md:mt-0 text-sm">
+                    Safeguard your home or enterprise against rising electricity tariffs with our high-efficiency Tier-1 solar panels, smart inverters, and battery storage.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Solar Item 1 -->
+                <div class="bg-navy-800 border border-gold-500/30 rounded-2xl overflow-hidden shadow-xl hover:border-gold-400 transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x400/131C2E/FBBF24?text=Residential+Solar" alt="Residential Solar" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 right-4 bg-gold-500 text-navy-950 text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Residential Rooftop Solar</h3>
+                        <p class="text-slate-400 text-sm">
+                            Custom designed solar setups for homes ranging from 3kW to 15kW with Mono PERC panels and smart hybrid inverters.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Complete Net Metering Assistance</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>25-Year Performance Warranty</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Mobile App Energy Monitoring</li>
+                        </ul>
+                        <button onclick="openBookingModal('Residential Solar System')" class="w-full bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-gold-400 border border-gold-500/40 font-semibold py-2.5 rounded-xl text-sm transition mt-2">
+                            Request Solar Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Solar Item 2 -->
+                <div class="bg-navy-800 border border-gold-500/30 rounded-2xl overflow-hidden shadow-xl hover:border-gold-400 transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x400/1E293B/38BDF8?text=Commercial+Solar" alt="Commercial Solar" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 right-4 bg-tech-500 text-navy-950 text-xs font-bold px-3 py-1 rounded-full">Industrial Grade</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Commercial & Industrial PV</h3>
+                        <p class="text-slate-400 text-sm">
+                            High-capacity systems (50kW to 1MW+) engineered for factories, plazas, hospitals, and educational institutions.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Heavy-Duty Industrial Structure</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Rapid ROI within 2.5 Years</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Full DISCOs Approvals</li>
+                        </ul>
+                        <button onclick="openBookingModal('Commercial Solar System')" class="w-full bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-gold-400 border border-gold-500/40 font-semibold py-2.5 rounded-xl text-sm transition mt-2">
+                            Request Solar Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Solar Item 3 -->
+                <div class="bg-navy-800 border border-gold-500/30 rounded-2xl overflow-hidden shadow-xl hover:border-gold-400 transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x400/0B0F19/10B981?text=Battery+Storage" alt="Battery Storage" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 right-4 bg-emerald-500 text-navy-950 text-xs font-bold px-3 py-1 rounded-full">24/7 Backup</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Lithium Battery Storage</h3>
+                        <p class="text-slate-400 text-sm">
+                            Advanced Lithium-ion and LiFePO4 battery banks ensuring zero interruption during outages with rapid switchover.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300">
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>6000+ Deep Charge Cycles</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Smart BMS Integration</li>
+                            <li><i class="fa-solid fa-check text-gold-400 mr-2"></i>Compact Wall-Mount Design</li>
+                        </ul>
+                        <button onclick="openBookingModal('Battery Storage System')" class="w-full bg-navy-900 hover:bg-gold-500 hover:text-navy-950 text-gold-400 border border-gold-500/40 font-semibold py-2.5 rounded-xl text-sm transition mt-2">
+                            Request Solar Quote
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solar Energy Calculator Section -->
+    <section id="calculator" class="py-20 bg-navy-950 border-y border-navy-700">
+        <div class="max-w-5xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Interactive Tool</span>
+                <h2 class="text-3xl font-extrabold text-white">Solar Savings & System Estimator</h2>
+                <p class="text-slate-400 text-sm">Estimate your monthly electricity bill savings, recommended solar system capacity, and estimated return on investment instantly.</p>
+            </div>
+
+            <div class="bg-navy-900 border border-gold-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Average Monthly Electricity Bill (PKR)</label>
+                        <input type="range" id="bill-range" min="10000" max="300000" step="5000" value="50000" class="w-full accent-gold-500 cursor-pointer" oninput="calculateSolar()">
+                        <div class="flex justify-between text-xs text-slate-400 mt-2">
+                            <span>PKR 10,000</span>
+                            <span id="bill-display" class="text-gold-400 font-bold text-sm">PKR 50,000</span>
+                            <span>PKR 300,000+</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Property Type</label>
+                        <select id="property-type" class="w-full bg-navy-800 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500" onchange="calculateSolar()">
+                            <option value="residential">Residential Home</option>
+                            <option value="commercial">Commercial Office / Plaza</option>
+                            <option value="industrial">Industrial Factory / Warehouse</option>
+                        </select>
+                    </div>
+
+                    <div class="p-4 bg-navy-800/80 rounded-2xl border border-navy-700 text-xs text-slate-300 space-y-1">
+                        <p><i class="fa-solid fa-circle-info text-gold-400 mr-2"></i>Calculations reflect current WAPDA/DISCO tariff rates.</p>
+                        <p><i class="fa-solid fa-circle-info text-gold-400 mr-2"></i>Net metering allows surplus export credits.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 bg-navy-800/90 border border-gold-500/20 rounded-2xl p-6 sm:p-8 space-y-6 text-center">
+                    <h3 class="text-lg font-bold text-white">Estimated Solar Solution</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-navy-900/90 p-4 rounded-xl border border-navy-700">
+                            <span class="text-xs text-slate-400 block mb-1">Recommended Size</span>
+                            <span id="calc-kw" class="text-2xl font-extrabold text-gold-400">5 kW</span>
+                        </div>
+                        <div class="bg-navy-900/90 p-4 rounded-xl border border-navy-700">
+                            <span class="text-xs text-slate-400 block mb-1">Monthly Savings</span>
+                            <span id="calc-savings" class="text-2xl font-extrabold text-tech-400">PKR 42,000</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gold-500/10 border border-gold-500/30 p-4 rounded-xl">
+                        <p class="text-xs text-amber-300">Estimated Payback Period: <span id="calc-roi" class="font-bold text-white">2.8 Years</span></p>
+                    </div>
+
+                    <button onclick="openBookingModalFromCalculator()" class="w-full bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-navy-950 font-bold py-3 rounded-xl transition text-sm shadow-lg shadow-gold-500/20">
+                        Book Site Survey & Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software & Tech Division -->
+    <section id="software" class="py-20 bg-navy-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div class="space-y-3">
+                    <span class="text-tech-400 font-semibold text-sm uppercase tracking-wider"><i class="fa-solid fa-laptop-code mr-1"></i> Digital Innovation</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Software & Tech Solutions</h2>
+                </div>
+                <p class="text-slate-400 max-w-md mt-4 md:mt-0 text-sm">
+                    We engineer robust, scalable web and mobile applications, enterprise ERPs, and cloud software to accelerate your business growth.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Software Service 1 -->
+                <div class="bg-navy-800 border border-tech-500/30 rounded-2xl p-8 hover:border-tech-400 transition space-y-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-tech-500/20 text-tech-400 flex items-center justify-center text-xl group-hover:bg-tech-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Custom Web Applications</h3>
+                    <p class="text-slate-400 text-sm">
+                        High-performance, secure web portals, SaaS platforms, and eCommerce stores built with modern technologies.
+                    </p>
+                    <div class="pt-4 border-t border-navy-700 flex justify-between items-center">
+                        <span class="text-xs text-tech-400 font-semibold">Scalable & Secure</span>
+                        <button onclick="openBookingModal('Custom Web Application')" class="text-xs bg-navy-900 hover:bg-tech-500 hover:text-navy-950 text-tech-400 border border-tech-500/40 px-3 py-1.5 rounded-lg transition">Inquire</button>
+                    </div>
+                </div>
+
+                <!-- Software Service 2 -->
+                <div class="bg-navy-800 border border-tech-500/30 rounded-2xl p-8 hover:border-tech-400 transition space-y-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-tech-500/20 text-tech-400 flex items-center justify-center text-xl group-hover:bg-tech-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Mobile App Development</h3>
+                    <p class="text-slate-400 text-sm">
+                        Native and cross-platform mobile applications for iOS and Android with intuitive UI/UX design and fast performance.
+                    </p>
+                    <div class="pt-4 border-t border-navy-700 flex justify-between items-center">
+                        <span class="text-xs text-tech-400 font-semibold">iOS & Android</span>
+                        <button onclick="openBookingModal('Mobile App Development')" class="text-xs bg-navy-900 hover:bg-tech-500 hover:text-navy-950 text-tech-400 border border-tech-500/40 px-3 py-1.5 rounded-lg transition">Inquire</button>
+                    </div>
+                </div>
+
+                <!-- Software Service 3 -->
+                <div class="bg-navy-800 border border-tech-500/30 rounded-2xl p-8 hover:border-tech-400 transition space-y-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-tech-500/20 text-tech-400 flex items-center justify-center text-xl group-hover:bg-tech-500 group-hover:text-navy-950 transition">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Enterprise ERP & Automation</h3>
+                    <p class="text-slate-400 text-sm">
+                        Custom ERP systems for inventory, payroll, accounting, and supply chain management tailored to streamline workflows.
+                    </p>
+                    <div class="pt-4 border-t border-navy-700 flex justify-between items-center">
+                        <span class="text-xs text-tech-400 font-semibold">Business Automation</span>
+                        <button onclick="openBookingModal('Enterprise ERP System')" class="text-xs bg-navy-900 hover:bg-tech-500 hover:text-navy-950 text-tech-400 border border-tech-500/40 px-3 py-1.5 rounded-lg transition">Inquire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects & Portfolio -->
+    <section id="projects" class="py-20 bg-navy-950 border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Our Track Record</span>
+                <h2 class="text-3xl font-extrabold text-white">Recent Successful Deployments</h2>
+                <p class="text-slate-400 text-sm">Explore some of our recently executed commercial solar plants and enterprise software applications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-navy-900 border border-navy-700 rounded-2xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/131C2E/FBBF24?text=100kW+Solar+Plant" alt="Project 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-xs text-gold-400 font-semibold">Solar Energy</span>
+                        <h4 class="font-bold text-white text-base">100kW Industrial Solar Plant</h4>
+                        <p class="text-xs text-slate-400">Complete net-metering setup with hybrid backup for manufacturing facility.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-navy-900 border border-navy-700 rounded-2xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/1E293B/38BDF8?text=Hospitality+ERP" alt="Project 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-xs text-tech-400 font-semibold">Software Solution</span>
+                        <h4 class="font-bold text-white text-base">Hotel Management Cloud ERP</h4>
+                        <p class="text-xs text-slate-400">Full-stack web dashboard with real-time billing and reservation tracking.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-navy-900 border border-navy-700 rounded-2xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/131C2E/FBBF24?text=Residential+15kW" alt="Project 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-xs text-gold-400 font-semibold">Solar Energy</span>
+                        <h4 class="font-bold text-white text-base">15kW Luxury Villa Solar System</h4>
+                        <p class="text-xs text-slate-400">Tier-1 panels paired with 10kWh LiFePO4 battery storage for power backup.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-navy-900 border border-navy-700 rounded-2xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/1E293B/38BDF8?text=Logistics+App" alt="Project 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-xs text-tech-400 font-semibold">Software Solution</span>
+                        <h4 class="font-bold text-white text-base">Fleet & Logistics Mobile App</h4>
+                        <p class="text-xs text-slate-400">Cross-platform mobile app with live GPS tracking and automated dispatching.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Consultation Section -->
+    <section id="contact" class="py-20 bg-navy-900 border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Discuss Your Project Today</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Whether you need an industrial solar installation or a custom enterprise software application, our experts are ready to provide a tailored consultation.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Location</h4>
+                                <p class="text-slate-400 text-xs mt-1">Pakistan (Nationwide Services)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Phone / WhatsApp</h4>
+                                <p class="text-slate-400 text-xs mt-1">+92 322 5253517</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-tech-500/10 text-tech-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Email Address</h4>
+                                <p class="text-slate-400 text-xs mt-1">mustafaprofessional0@gamil.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-navy-800/90 border border-gold-500/20 rounded-3xl p-8 shadow-2xl">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <h3 class="text-xl font-bold text-white">Request Consultation or Quote</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Full Name</label>
+                                <input type="text" id="form-name" required class="w-full bg-navy-900 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500" placeholder="Muhammad Ali">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Phone Number</label>
+                                <input type="tel" id="form-phone" required class="w-full bg-navy-900 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500" placeholder="0322 5253517">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Service Required</label>
+                                <select id="form-service" class="w-full bg-navy-900 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500">
+                                    <option value="Residential Solar">Residential Solar System</option>
+                                    <option value="Commercial Solar">Commercial Solar System</option>
+                                    <option value="Battery Storage">Battery Storage Solution</option>
+                                    <option value="Web Development">Custom Web Application</option>
+                                    <option value="Mobile App">Mobile App Development</option>
+                                    <option value="Enterprise ERP">Enterprise ERP System</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">City / Location</label>
+                                <input type="text" id="form-city" required class="w-full bg-navy-900 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500" placeholder="Lahore / Islamabad / Karachi">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Project Details / Message</label>
+                            <textarea id="form-msg" rows="4" class="w-full bg-navy-900 border border-navy-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500" placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-amber-600 hover:opacity-95 text-navy-950 font-bold py-3.5 rounded-xl transition text-sm shadow-lg shadow-gold-500/20">
+                            Submit Request Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/923225253517?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20Solar%20and%20Software%20solutions." target="_blank" class="fixed bottom-6 left-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-navy-950 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl transition transform hover:scale-110" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp text-white"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-navy-700 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-500 to-amber-600 flex items-center justify-center text-navy-950 font-bold">
+                        <i class="fa-solid fa-sun text-lg"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg">Mustafa Solar & Software</span>
+                </div>
+                <p class="text-xs leading-relaxed">
+                    Combining world-class clean solar energy engineering with robust enterprise software solutions for sustainable digital growth across Pakistan.
+                </p>
+                <div class="text-xs text-slate-300 space-y-1">
+                    <p><i class="fa-solid fa-phone text-gold-400 mr-2"></i>+92 322 5253517</p>
+                    <p><i class="fa-solid fa-envelope text-tech-400 mr-2"></i>mustafaprofessional0@gamil.com</p>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Solar Energy</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#solar" class="hover:text-gold-400 transition">Residential Solar</a></li>
+                    <li><a href="#solar" class="hover:text-gold-400 transition">Commercial & Industrial</a></li>
+                    <li><a href="#solar" class="hover:text-gold-400 transition">Net Metering Services</a></li>
+                    <li><a href="#solar" class="hover:text-gold-400 transition">Lithium Battery Storage</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Software Solutions</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#software" class="hover:text-tech-400 transition">Web Applications</a></li>
+                    <li><a href="#software" class="hover:text-tech-400 transition">Mobile App Development</a></li>
+                    <li><a href="#software" class="hover:text-tech-400 transition">Custom ERP & CRM</a></li>
+                    <li><a href="#software" class="hover:text-tech-400 transition">Cloud Infrastructure</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#home" class="hover:text-gold-400 transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-gold-400 transition">About Us</a></li>
+                    <li><a href="#calculator" class="hover:text-gold-400 transition">Solar Estimator</a></li>
+                    <li><a href="#contact" class="hover:text-gold-400 transition">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-8 border-t border-navy-900 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Mustafa Solar And Solar Solution. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-slate-400 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Solar Calculator Logic
+        function calculateSolar() {
+            const bill = parseInt(document.getElementById('bill-range').value);
+            const propertyType = document.getElementById('property-type').value;
+
+            document.getElementById('bill-display').innerText = 'PKR ' + bill.toLocaleString();
+
+            let kw = Math.round((bill / 10000) * 1.2);
+            if (kw < 3) kw = 3;
+
+            let savings = Math.round(bill * 0.85);
+            let roi = propertyType === 'residential' ? '2.8 Years' : '2.4 Years';
+
+            document.getElementById('calc-kw').innerText = kw + ' kW';
+            document.getElementById('calc-savings').innerText = 'PKR ' + savings.toLocaleString();
+            document.getElementById('calc-roi').innerText = roi;
+        }
+
+        // Modal Notification helper
+        function showToast(title, message) {
+            const modal = document.getElementById('toast-modal');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = message;
+
+            modal.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+            modal.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                modal.classList.remove('translate-y-0', 'opacity-100');
+                modal.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // Open booking modal with preselected service
+        function openBookingModal(serviceName) {
+            document.getElementById('form-service').value = serviceName;
+            const contactSection = document.getElementById('contact');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+            showToast('Service Selected', `Selected ${serviceName}. Please fill out the form below.`);
+        }
+
+        function openBookingModalFromCalculator() {
+            const kw = document.getElementById('calc-kw').innerText;
+            document.getElementById('form-msg').value = `I am interested in a solar installation based on the calculator estimate of ${kw}. Please contact me.`;
+            const contactSection = document.getElementById('contact');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+            showToast('Estimate Captured', 'Your calculator results have been attached to the contact form.');
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            showToast('Request Submitted Successfully!', `Thank you ${name}! Our representative will contact you shortly.`);
+            document.getElementById('contact-form').reset();
+        }
+
+        // Run calculator on load
+        window.onload = function() {
+            calculateSolar();
+        };
+    </script>
+</body>
+</html>
